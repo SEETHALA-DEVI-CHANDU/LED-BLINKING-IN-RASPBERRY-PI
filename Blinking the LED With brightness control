@@ -1,0 +1,19 @@
+import time
+import RPi.GPIO as GPIO
+
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(18, GPIO.OUT)
+
+pwm = GPIO.PWM(18, 100)
+pwm.start(0)
+
+try:
+    while True:
+        duty_cycle = float(input("Enter the Duty cycle : " ))
+        pwm.ChangeDutyCycle(duty_cycle)
+
+except KeyboardInterrupt:
+    pass
+
+pwm.stop()
+GPIO.cleanup()
